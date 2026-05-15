@@ -1,3 +1,4 @@
+````markdown
 # Windows 11 STIG Implementation & Vulnerability Management
 
 ## Overview
@@ -30,32 +31,97 @@ The objective was to improve system hardening, validate compliance findings, and
 
 ---
 
-## Example Finding
+# Example Finding
 
-### WN11-AU-000500
-**Requirement:**  
-The Application event log size must meet Windows 11 STIG minimum requirements.
+## WN11-AU-000500
+### Requirement
+The Application event log size must be configured to `32768 KB` or greater.
 
-### Issue Identified
-The initial configuration used a legacy Windows 10 registry value (`32768 KB`), which failed validation against the Windows 11 benchmark.
+---
+
+## Initial Vulnerability Scan
+
+The initial Tenable compliance scan identified the STIG finding as failed.
+
+![Initial Failed Scan](wn11-au-000500-failure-validation.png)
+
+---
+
+## Manual Validation
+
+The registry configuration was manually reviewed to validate the existing configuration.
 
 ### Registry Path
 ```registry
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application
 ```
 
-### Remediation
-Updated the `MaxSize` registry value to meet Windows 11 STIG requirements.
+### Registry Validation Screenshot
 
-### Validation
-The system was rescanned after remediation to validate compliance.
+![Registry Validation](registry-remediation.png)
 
 ---
 
-## Outcome
+## Group Policy Reset / Failure Validation
+
+The policy was reverted to validate that the finding would fail again during rescanning.
+
+![Policy Reset](Policy Reset.png)
+
+### Failed Rescan Validation
+
+The rescan confirmed the STIG failure condition.
+
+![Failed Rescan](failed-stig-scan.png)
+
+---
+
+## PowerShell Remediation
+
+A PowerShell remediation script was developed to automate the STIG implementation.
+
+```powershell
+# WN11-AU-000500 Remediation
+# Configure Application Event Log Size to 32768 KB
+
+$registryPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application"
+$valueName = "MaxSize"
+$valueData = 32768
+
+# Create registry path if it does not exist
+if (!(Test-Path $registryPath)) {
+    New-Item -Path $registryPath -Force
+}
+
+# Configure registry value
+Set-ItemProperty -Path $registryPath -Name $valueName -Value $valueData -Type DWord
+
+Write-Host "WN11-AU-000500 remediation applied successfully."
+```
+
+### PowerShell Remediation Execution
+
+![PowerShell Remediation](wn11-au-000500-powershell-remediation.png)
+
+---
+
+## Compliance Validation
+
+After remediation, the system was rescanned in Tenable to validate successful STIG compliance.
+
+![Successful Compliance Validation](passed-stig-scan.png)
+
+---
+
+# Outcome
+
 This project provided hands-on experience with:
 - vulnerability scanning
-- STIG remediation
 - Windows hardening
+- DISA STIG remediation
+- PowerShell automation
+- registry-based remediation
 - compliance validation
 - operational security workflows
+- vulnerability management lifecycle processes
+````
