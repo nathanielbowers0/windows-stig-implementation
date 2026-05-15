@@ -35,24 +35,44 @@ The objective was to strengthen endpoint security posture, validate compliance f
 # Example STIG Remediation
 
 ## WN11-AU-000500
+
 ### Requirement
 The Windows Application Event Log size must be configured to `32768 KB` or greater to meet DISA STIG compliance requirements.
 
 ---
 
-## Initial Vulnerability Scan
+## Initial Manual Remediation Validation
 
-The initial Tenable compliance scan identified the STIG finding as failed.
+The STIG was initially remediated manually through Windows Group Policy and registry configuration changes before PowerShell automation was developed.
 
-<img width="1094" height="261" alt="failed-stig-scan" src="https://github.com/user-attachments/assets/6d18ed67-ff58-46dc-a3a0-de4cf7b1402e" />
+### Registry Path
+
+```registry
+HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application
+```
+
+### Registry Configuration
+- Registry Value: `MaxSize`
+- Value Type: `REG_DWORD`
+- Required Value: `32768 KB`
+
+### Initial Compliance Validation
+
+A Tenable rescan confirmed successful compliance validation after the manual remediation was applied.
+
+<img width="1101" height="300" alt="initial-manual-remediation-pass" src="https://github.com/user-attachments/assets/c1711b7d-6a1b-482f-b25a-86d9c9d8649b" />
 
 ---
 
 ## Failure Validation
 
-The STIG failure condition was validated through Group Policy review and rescanning to confirm the system remained non-compliant prior to remediation.
+The policy configuration was reverted to validate that the system would properly fail compliance rescanning prior to PowerShell automation development.
+
+### Group Policy Reset
 
 <img width="1154" height="718" alt="Policy Reset" src="https://github.com/user-attachments/assets/dfa51736-44bd-49a8-8714-7c13b5fd0e27" />
+
+### Failed Compliance Rescan
 
 <img width="1454" height="372" alt="wn11-au-000500-failure-validation" src="https://github.com/user-attachments/assets/513ffbd4-fda6-42d7-8906-3834c51860f2" />
 
@@ -60,12 +80,15 @@ The STIG failure condition was validated through Group Policy review and rescann
 
 ## Registry Validation
 
-The Windows registry configuration was manually reviewed to validate the current Application Event Log configuration.
+The Windows registry configuration was manually reviewed to validate the Application Event Log remediation target.
 
 ### Registry Path
+
 ```registry
 HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application
 ```
+
+### Registry Validation Screenshot
 
 <img width="1146" height="586" alt="registry-remediation" src="https://github.com/user-attachments/assets/6fdf7bd1-fe51-4828-b98d-851809c1ae2d" />
 
@@ -73,7 +96,7 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application
 
 ## PowerShell Remediation
 
-A PowerShell remediation script was developed to automate the STIG implementation and standardize remediation.
+A PowerShell remediation script was developed to automate the STIG implementation process and standardize future remediation workflows.
 
 ```powershell
 # WN11-AU-000500 Remediation
@@ -94,15 +117,15 @@ Set-ItemProperty -Path $registryPath -Name $valueName -Value $valueData -Type DW
 Write-Host "WN11-AU-000500 remediation applied successfully."
 ```
 
-### PowerShell Execution
+### PowerShell Script Execution
 
 <img width="1128" height="622" alt="wn11-au-000500-powershell-remediation" src="https://github.com/user-attachments/assets/94df9120-56e5-404d-8bed-b84a9f9c1673" />
 
 ---
 
-## Compliance Validation
+## Final Compliance Validation
 
-After remediation, the system was rescanned using Tenable to validate successful DISA STIG compliance.
+After PowerShell remediation, the system was rescanned using Tenable to validate successful DISA STIG compliance.
 
 <img width="1091" height="336" alt="wn11-au-000500-passed-scan" src="https://github.com/user-attachments/assets/8b15f2e6-553f-44eb-9a47-dd3d7f4e6244" />
 
@@ -111,6 +134,7 @@ After remediation, the system was rescanned using Tenable to validate successful
 # Outcome
 
 This project provided hands-on experience with:
+
 - DISA STIG remediation workflows
 - vulnerability scanning and validation
 - Windows security hardening
