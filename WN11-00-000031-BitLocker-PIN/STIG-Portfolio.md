@@ -1,6 +1,6 @@
 # Additional STIG Projects
 
-## 🧩 Main STIG Portfolio
+## 🧩 WN11-AU-000500
 https://github.com/nathanielbowers0/windows-stig-implementation
 
 ---
