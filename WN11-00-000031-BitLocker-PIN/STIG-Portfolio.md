@@ -10,7 +10,7 @@ https://github.com/nathanielbowers0/windows-11-account-lockout-policy-remediatio
 
 ---
 
-## 🖥️ WN11-00-000115 — Telnet Client STIG Remediation
+## 💻 WN11-00-000115 — Telnet Client STIG Remediation
 https://github.com/nathanielbowers0/wn11-00-000115-telnet-client-stig-remediation
 
 ---
@@ -35,10 +35,15 @@ https://github.com/nathanielbowers0/wn10-cc-000005-lock-screen-camera-remediatio
 
 ---
 
-##  WN10-CC-000010 — Lock Screen Slideshow Remediation
+## WN10-CC-000010 — Lock Screen Slideshow Remediation
 https://github.com/nathanielbowers0/wn11-cc-000010-lock-screen-slideshow-remediation
 
 ---
 
 ## 🧾 WN10-CC-000066 — Process Creation Command-Line Auditing Remediation
 https://github.com/nathanielbowers0/wn10-cc-000066-process-creation-command-line-remediation
+
+---
+
+## ⚙️ WN10-CC-000090 — Registry Policy Processing Remediation
+https://github.com/nathanielbowers0/wn10-cc-000090-registry-policy-processing-remediation
