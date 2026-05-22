@@ -1,6 +1,6 @@
-# Stig Portfolio
+# STIG Portfolio
 
-## 🧩 WN11-AU-000500
+## 🧩 WN11-AU-000500 — Windows Application Event Log Remediation
 https://github.com/nathanielbowers0/windows-stig-implementation
 
 ---
@@ -35,7 +35,7 @@ https://github.com/nathanielbowers0/wn10-cc-000005-lock-screen-camera-remediatio
 
 ---
 
-## WN10-CC-000010 — Lock Screen Slideshow Remediation
+## 🖼️ WN10-CC-000010 — Lock Screen Slideshow Remediation
 https://github.com/nathanielbowers0/wn11-cc-000010-lock-screen-slideshow-remediation
 
 ---
@@ -47,3 +47,8 @@ https://github.com/nathanielbowers0/wn10-cc-000066-process-creation-command-line
 
 ## ⚙️ WN10-CC-000090 — Registry Policy Processing Remediation
 https://github.com/nathanielbowers0/wn10-cc-000090-registry-policy-processing-remediation
+
+---
+
+## 📡 WN10-CC-000205 — Telemetry Configuration Remediation
+https://github.com/nathanielbowers0/wn10-cc-000205-telemetry-configuration-remediation
