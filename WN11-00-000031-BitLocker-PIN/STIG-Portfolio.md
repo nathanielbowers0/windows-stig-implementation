@@ -27,3 +27,8 @@ https://github.com/nathanielbowers0/windows11-bitlocker-tpm-pin-stig-remediation
 
 ## 📊 WN10-AU-000035 — Audit Policy Remediation
 https://github.com/nathanielbowers0/wn10-au-000035-audit-policy-remediation
+
+---
+
+## 📷 WN10-CC-000005 — Lock Screen Camera Remediation
+https://github.com/nathanielbowers0/wn10-cc-000005-lock-screen-camera-remediation
